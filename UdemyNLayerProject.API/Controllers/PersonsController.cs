@@ -9,7 +9,6 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using UdemyNLayerProject.API.DTOs;
-using UdemyNLayerProject.API.Filters;
 using UdemyNLayerProject.Core.Models;
 using UdemyNLayerProject.Core.Services;
 
@@ -17,63 +16,61 @@ namespace UdemyNLayerProject.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class PersonsController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IProductService _productService;
-        public ProductsController(IProductService productService, IMapper mapper)
+        private readonly IService<Person> _personService;
+        public PersonsController(IService<Person> personService, IMapper mapper)
         {
-            _productService = productService;
+            _personService = personService;
             _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var products = await _productService.GetAllAsync();
-            return Ok(_mapper.Map<IEnumerable<ProductDto>>(products));
+            var person = await _personService.GetAllAsync();
+            return Ok(_mapper.Map<IEnumerable<PersonDto>>(person));
         }
 
-        [ServiceFilter(typeof(NotFoundFilter))]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var product = await _productService.GetByIdAsync(id);
+            var person = await _personService.GetByIdAsync(id);
             // 200
-            return Ok(_mapper.Map<ProductDto>(product));
+            return Ok(_mapper.Map<PersonDto>(person));
         }
 
-        [ServiceFilter(typeof(NotFoundFilter))]
-        [HttpGet("{id}/category")]
+        /*[HttpGet("{id}/category")]
         public async Task<IActionResult> GetWithCategoryById(int id)
         {
             var Product = await _productService.GetWithCategoryById(id);
             // 200
             return Ok(_mapper.Map<ProductWithCategory>(Product));
-        }
+        }*/
+
 
         [HttpPost]
-        public async Task<IActionResult> Save(ProductDto productDto)
+        public async Task<IActionResult> Save(PersonDto personDto)
         {
-            var newProduct = await _productService.AddAsync(_mapper.Map<Product>(productDto));
+            var newPerson = await _personService.AddAsync(_mapper.Map<Person>(personDto));
             // 201
-            return Created(string.Empty, _mapper.Map<ProductDto>(newProduct));
+            return Created(string.Empty, _mapper.Map<PersonDto>(newPerson));
         }
 
         [HttpPut]
-        public IActionResult Update(ProductDto productDto)
+        public IActionResult Update(PersonDto personDto)
         {
-            var product = _productService.Update(_mapper.Map<Product>(productDto));
+            var person = _personService.Update(_mapper.Map<Person>(personDto));
             // 204
             return NoContent();
         }
 
-        [ServiceFilter(typeof(NotFoundFilter))]
         [HttpDelete("{id}")]
         public IActionResult Remove(int id)
         {
-            var product = _productService.GetByIdAsync(id).Result;
-            _productService.Remove(product);
+            var person = _personService.GetByIdAsync(id).Result;
+            _personService.Remove(person);
             // 204
             return NoContent();
         }
