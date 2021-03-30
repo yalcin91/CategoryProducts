@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemyNLayerProject.API", "UdemyNLayerProject.API\UdemyNLayerProject.API.csproj", "{97A7631F-DB7B-45B8-A223-B0BE9A842814}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyNLayerProject.Core", "UdemyNLayerProject.Core\UdemyNLayerProject.Core.csproj", "{B5D408E7-B056-41BC-AE4B-B5354FDCEE37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemyNLayerProject.Core", "UdemyNLayerProject.Core\UdemyNLayerProject.Core.csproj", "{B5D408E7-B056-41BC-AE4B-B5354FDCEE37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyNLayerProject.Data", "UdemyNLayerProject.Data\UdemyNLayerProject.Data.csproj", "{EBCECF78-D44C-4552-82F7-11FF18DEDE39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemyNLayerProject.Data", "UdemyNLayerProject.Data\UdemyNLayerProject.Data.csproj", "{EBCECF78-D44C-4552-82F7-11FF18DEDE39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyNLayerProject.Service", "UdemyNLayerProject.Service\UdemyNLayerProject.Service.csproj", "{259419F4-ADC5-4927-AEE3-120C8179DC27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemyNLayerProject.Service", "UdemyNLayerProject.Service\UdemyNLayerProject.Service.csproj", "{259419F4-ADC5-4927-AEE3-120C8179DC27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyNLayerProject.Test", "UdemyNLayerProject.Test\UdemyNLayerProject.Test.csproj", "{81B7158E-58B0-400C-A1A6-D98364812084}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{259419F4-ADC5-4927-AEE3-120C8179DC27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{259419F4-ADC5-4927-AEE3-120C8179DC27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{259419F4-ADC5-4927-AEE3-120C8179DC27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81B7158E-58B0-400C-A1A6-D98364812084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81B7158E-58B0-400C-A1A6-D98364812084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81B7158E-58B0-400C-A1A6-D98364812084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81B7158E-58B0-400C-A1A6-D98364812084}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
