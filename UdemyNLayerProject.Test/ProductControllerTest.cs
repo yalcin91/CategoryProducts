@@ -97,26 +97,16 @@ namespace UdemyNLayerProject.Test
             Assert.Equal(product.Name, returnProduct.Name);
         }
 
-       /* [Fact]
+        [Fact]
         public  void PutProduct_IdIsNotEqualProduct_ReturnBadRequest()
         {
+            var product = products.First();
             _mockRepo.Setup(x => x.GetAllAsync()).ReturnsAsync(products);
-            //ProductDto productDto = new ProductDto();
             var product1 = productDtos.First();
-            //product1.Id = 2;
+            product1 = null;
             var result =  _controller.Update(product1);
-            //Assert.IsType<OkObjectResult>(result);
-            //var returnProduct = Assert.IsAssignableFrom<NoContentResult>(result);
-            var badRequest = Assert.IsAssignableFrom<BadRequestResult>(result);
-            //Assert.Equal(returnProduct.Id, product1.Id);
-            //Assert.Equal(returnProduct.Name, product1.Name);
-
-            /*_mockRepo.Setup(x => x.Update()).ReturnsAsync(products);
-            var result = await _controller.GetAll();
-            var okResult = Assert.IsType<OkObjectResult>(result);
-            var returnProducts = Assert.IsAssignableFrom<List<ProductDto>>(okResult.Value);
-            Assert.Equal<int>(2, returnProducts.ToList().Count);
-        }*/
+            Assert.IsType<BadRequestResult>(result);
+        }
 
         [Fact]
         public  void PutProduct_IdIsEqualProduct_ReturnNoContent()
@@ -125,6 +115,52 @@ namespace UdemyNLayerProject.Test
             var product1 = productDtos.First();
             var result =  _controller.Update(product1);
             var returnProduct = Assert.IsAssignableFrom<NoContentResult>(result);
+        }
+
+        [Fact]
+        public async void PostProduct_ReturnCreatedProduct()
+        {
+            _mockRepo.Setup(x => x.GetAllAsync()).ReturnsAsync(products);
+            var product1 = productDtos.First();
+            await _controller.Save(product1);
+            var result = await _controller.Save(product1);
+            Assert.IsType<CreatedResult>(result);
+        }
+
+        [Fact]
+        public async void PostProduct_ReturnBadRequest()
+        {
+            var product = products.First();
+            _mockRepo.Setup(x => x.GetAllAsync()).ReturnsAsync(products);
+            _mockRepo.Setup(x => x.AddAsync(_mapper.Map<Product>(product)));
+            var product1 = productDtos.First();
+            product1 = null;
+            var result = await _controller.Save(product1);
+            Assert.IsType<BadRequestResult>(result);
+             product1 = productDtos.First();
+            product1.Name = null;
+            var result2 = await _controller.Save(product1);
+            Assert.IsType<ConflictResult>(result2);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        public  void DeleteProduct_IdInValid_ReturnNotFound(int productId)
+        {
+            Product product = null;
+            _mockRepo.Setup(x => x.GetByIdAsync(productId)).ReturnsAsync(product);
+            var result =  _controller.Remove(productId);
+            Assert.IsType<NotFoundResult>(result);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        public void DeleteProduct_IdValid_ReturnOk(int productId)
+        {
+            var product = products.First(x => x.Id == productId);
+            _mockRepo.Setup(x => x.GetByIdAsync(productId)).ReturnsAsync(product);
+            var result = _controller.Remove(productId);
+            Assert.IsType<NoContentResult>(result);
         }
     }
 }

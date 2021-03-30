@@ -64,8 +64,9 @@ namespace UdemyNLayerProject.API.Controllers
         public async Task<IActionResult> Save(ProductDto productDto)
         {
             var v = await _productService.GetAllAsync();
-            var name = v.Select(x=>x.Name == productDto.Name).ToString();
-            if (name == productDto.Name) { return Conflict(); }//409
+            if (productDto == null) { return BadRequest(); }
+            var name = v.Select(x => x.Name == productDto.Name).First().ToString();
+            if (productDto.Name == name || productDto.Name == null) { return Conflict(); }//409
             var newProduct = await _productService.AddAsync(_mapper.Map<Product>(productDto));
             // 201
             return Created(string.Empty, _mapper.Map<ProductDto>(newProduct));
