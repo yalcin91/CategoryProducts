@@ -6,29 +6,70 @@
     <title>@ViewData["Title"] - UdemyNLayerProject.Web</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        *#test:hover {
+            background: linear-gradient( 45deg, rgba(29, 236, 197, 0.5), rgba(91, 14, 214, 0.5) 100% );
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">UdemyNLayerProject.Web</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+        <nav class="navbar navbar-expand-lg
+             navbar-toggleable-sm
+             navbar-light
+             bg-white
+             border-bottom
+             box-shadow
+             mb-3">
+            <a class="navbar-brand h3
+               font-italic
+               font-weight-bolder">
+                UdemyNLayerProject.Web
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" />
+            </button>
+
+            <div class="navbar-collapse
+                 collapse
+                 d-sm-inline-flex
+                 justify-content-between">
+                <ul class="navbar-nav
+                    flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link
+                           text-dark"
+                           id="test"
+                           asp-area=""
+                           asp-controller="Home"
+                           asp-action="Index">
+                            Home
+                        </a>
+                        <span class=""></span>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link
+                           text-dark"
+                           id="test"
+                           asp-area=""
+                           asp-controller="Categories"
+                           asp-action="Index">
+                            Categories
+                        </a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -40,10 +81,11 @@
             &copy; 2021 - UdemyNLayerProject.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <partial name="_ValidationScriptsPartial"/>
+    <partial name="_ValidationScriptsPartial" />
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

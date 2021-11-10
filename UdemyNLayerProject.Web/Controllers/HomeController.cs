@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+using UdemyNLayerProject.Web.DTOs;
 using UdemyNLayerProject.Web.Models;
 
 namespace UdemyNLayerProject.Web.Controllers
@@ -31,9 +32,9 @@ namespace UdemyNLayerProject.Web.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(ErrorDto errorDto)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(errorDto);
         }
     }
 }

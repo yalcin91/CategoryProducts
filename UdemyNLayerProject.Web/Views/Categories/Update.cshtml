@@ -1,14 +1,14 @@
 ﻿@model CategoryDto
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Update";
 }
 
-<h1>Category Ekle</h1>
+<h1>Category Guncelle</h1>
 
 <div class="row">
     <div class="col-4">
-        <form asp-action="Create">
+        <form asp-action="Update">
             <div asp-validation-summary="ModelOnly"
                  class="text-danger" />
 
@@ -29,7 +29,7 @@
                 <button class="btn
                         btn-primary
                         mb-1">
-                    Add
+                    Update
                 </button>
             </div>
         </form>
